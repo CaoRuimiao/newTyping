@@ -1,0 +1,169 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	/*background: #000;*/
+	/*background: url("../images/bg.jpg") no-repeat center;*/
+	background: url("../images/bj1.jpg") no-repeat center;
+	background-size: cover;
+}
+span{
+	line-height: 50px;
+}
+.panel{
+	width: 100%;
+	height: 50px;
+    padding:5px 0;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: #8ADEE6;
+	z-index: 20;
+}
+.panel .die{
+	width: 20%;
+	margin-left: 50px;
+	float: left;
+    color: #ffffff;
+	background: url("../images/life.png") no-repeat center;
+}
+.panel .score{
+	width: 20%;
+	float: left;
+    color: #ffffff;
+	background: url("../images/score.png") no-repeat center;
+}
+.panel .choseBtn{
+    width:15%;
+    height:50px;
+    float: left;
+    background: url("../images/choseBtn.png") no-repeat center;
+    cursor: pointer;
+}
+.panel .guanqia{
+    width:20%;
+    height:120px;
+    position: absolute;
+    top: -100px;
+    right:300px;
+    clear: both;
+    display: none;
+}
+.guanqia-item{
+    width:20%;
+    height:120px;
+    float: left;
+    background-size: cover;
+    cursor: pointer;
+}
+.item1{
+    background: url("../images/gq1.svg") no-repeat center;
+}
+.item2{
+    background: url("../images/gq2.svg") no-repeat center;
+}
+.item3{
+    background: url("../images/gq3.svg") no-repeat center;
+}
+.item4{
+    background: url("../images/gq4.svg") no-repeat center;
+}
+.item5{
+    background: url("../images/gq5.svg") no-repeat center;
+}
+/*暂停*/
+.panel .pauseBtn{
+    width:15%;
+    height:50px;
+    float: left;
+    background: url("../images/pause.png") no-repeat center;
+    cursor: pointer;
+}
+/*继续*/
+.panel .continueBtn{
+    width:15%;
+    height:50px;
+    float: left;
+    background: url("../images/continue.png") no-repeat center;
+    cursor: pointer;
+    display: none;
+}
+/*关卡*/
+.play,.win,.fail{
+	width: 400px;
+	height:300px;
+	position:fixed;
+	top: 0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index: 100;
+	margin: auto;
+	display: none;
+    transition: all .6s ease;
+}
+/*开始*/
+.play{
+	/*height:500px;*/
+    height:450px;
+	background: url("../images/paly.svg") no-repeat;
+	background-size: cover;display: block;
+    cursor: pointer;
+    top:-100px;
+}
+
+.replay{
+    /*.nextBtn,,.playBtn*/
+	width:90px;
+	padding: 5px;
+	border:1px solid black;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+/*通过关卡*/
+.win{
+	background: url("../images/win.svg") no-repeat;
+	background-size: cover;
+}
+.nth-num{
+	width:100px;
+	padding: 5px;
+	font-weight: 600;
+	line-height: 30px;
+	text-align: center;
+	position: absolute;
+	left: 140px;
+	bottom:96px;
+}
+/*未通过关卡*/
+.fail{
+	width:600px;
+	height:450px;
+	background: url("../images/fail.svg") no-repeat;
+	background-size: cover;
+}
+.replay{
+	position: absolute;
+	left: 270px;
+	bottom:60px;
+	background: #5BB440;
+	color:white;
+	border:1px solid white;
+	-webkit-transition:shanshuo 1s ease;
+}
+/*显示关卡*/
+.tips{
+	width:100px;
+	height:100px;
+	border-radius: 50%;
+	background: rgba(0,0,0,.4);
+	/*background: url("../images/gq-bg.svg");*/
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}

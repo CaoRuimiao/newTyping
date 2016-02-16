@@ -1,0 +1,149 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>打字游戏</title>
+	<link rel="stylesheet" type="text/css" href="css/animation.css">
+	<link rel="stylesheet" type="text/css" href="css/game.css">
+	<script type="text/javascript" src="js/jQuery.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+	<script type="text/javascript">
+		window.onload=function(){
+			var games=new game();
+            var tips=document.getElementsByClassName("tips")[0];
+            var play=document.getElementsByClassName("play")[0];
+            var fail=document.getElementsByClassName("fail")[0];
+            var choseBtn=document.getElementsByClassName("choseBtn")[0];
+            var pauseBtn=document.getElementsByClassName("pauseBtn")[0];
+            var continueBtn=document.getElementsByClassName("continueBtn")[0];
+            var guanqia=document.getElementsByClassName("guanqia")[0];
+            var guanqiaItem=document.getElementsByClassName("guanqia-item");
+            //点击开始游戏
+            play.onclick=function(){
+                play.style.top=-1100;   //-play.offsetTop-play.offsetHeight
+                games.play();
+                //开始后不能选择关卡，隐藏关卡选择
+                choseBtn.style.display="none";
+                //暂停
+                pauseBtn.onclick=function(){
+                    clearInterval(games.t);
+                    //暂停时，按键不能消除字母
+                    document.onkeydown=null;
+                    this.style.display="none";
+                    continueBtn.style.display="block";
+                }
+                //继续
+                continueBtn.onclick=function(){
+                    setTimeout(function(){
+                        games.move();
+                    },0);
+                    //点击继续后，按键消除字母
+                    games.key();
+
+                    this.style.display="none";
+                    pauseBtn.style.display="block";
+                }
+            }
+            //当前关卡提示
+			tips.innerHTML="<img src='images/"+games.aa+".svg'/>";
+
+            //点击显示关卡
+            var kaiguan=true;
+            choseBtn.onclick=function(){
+                if(kaiguan){
+                    guanqia.style.display="block";
+                    kaiguan=false;
+                }else {
+                    guanqia.style.display="none";
+                    kaiguan=true;
+                }
+            }
+            //点击选择关卡
+            for(var i=0;i<guanqiaItem.length;i++){
+                guanqiaItem[i].index=i;
+                guanqiaItem[i].onclick=function(){
+                    guanqia.style.display="none";
+                    kaiguan=true;
+                    if(this.index!=0){
+                        games.speed++;
+                        games.letterLen+=this.index+1;
+                    }
+                    //选择关卡后删除原来的元素，重新显示本关卡的元素
+                    for(var i=0;i<games.spans.length;i++){
+                        document.body.removeChild(games.spans[i]);
+                    }
+                    games.spans=[];
+
+                    games.aa=this.index+1;
+                    tips.innerHTML="<img src='images/"+games.aa+".svg'/>";
+                    if(play.style.top=="-1100px"){
+                        games.play();
+                    }
+                }
+            }
+
+
+//			var select=document.getElementsByTagName('select')[0];
+//			select.onchange=function(){
+//				games.speed+=parseInt(select[(select.selectedIndex)].value);
+//
+//                //选择关卡后删除原来的元素，重新显示本关卡的元素
+//                for(var i=0;i<games.spans.length;i++){
+//                    document.body.removeChild(games.spans[i]);
+//                }
+//                games.spans=[];
+//
+//				games.letterLen+=parseInt(select[(select.selectedIndex)].value);
+//				games.aa=parseInt(select[(select.selectedIndex)].value);
+//                games.play();
+//			};
+
+		}
+	</script>
+</head>
+<body>
+    <!--当前关卡提示-->
+	<div class="tips"></div>
+    <!--开始-->
+    <div class="play" data-a="animate-shanshuo">
+        <!--<class class="playBtn"></class>-->
+    </div>
+	<div class="panel">
+		<div class="die">
+			<!--<span>生命：</span>-->
+			<span class="dieNum">10</span>
+		</div>
+		<div class="score">
+			<!--<span>分数：</span>-->
+			<span class="scoreNum">0</span>
+		</div>
+        <div class="choseBtn"> </div>
+        <div class="guanqia">
+            <div class="guanqia-item item1"></div>
+            <div class="guanqia-item item2"></div>
+            <div class="guanqia-item item3"></div>
+            <div class="guanqia-item item4"></div>
+            <div class="guanqia-item item5"></div>
+        </div>
+        <div class="pauseBtn"></div>
+        <div class="continueBtn"></div>
+		<!--<span>请选择关卡：</span>-->
+		<!--<select>-->
+			<!--<option value="1">1</option>-->
+			<!--<option value="2">2</option>-->
+			<!--<option value="3">3</option>-->
+			<!--<option value="4">4</option>-->
+			<!--<option value="5">5</option>-->
+		<!--</select>-->
+	</div>
+	<!-- 通过关卡 -->
+	<div class="win">
+		<div class="nth-num"></div>
+		<div class="nextBtn"></div>
+	</div>
+	<!-- 未通过关卡 -->
+	<div class="fail">
+		<div class="replay" data-a="animate-shanshuo">replay</div>
+	</div>
+</body>
+</html>
