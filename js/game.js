@@ -107,7 +107,8 @@ game.prototype={
                         //}
                         //-----------------------------------------------------------------
 
-
+						document.getElementsByClassName("pauseBtn")[0].style.display="none";//游戏结束 隐藏暂停按钮
+                        			document.getElementsByClassName("continueBtn")[0].style.display="none";//游戏结束 隐藏继续按钮
 						document.onkeydown=null;
 						document.getElementsByClassName("replay")[0].onclick=function(){
 							that.restart();
@@ -141,6 +142,7 @@ game.prototype={
         document.getElementsByClassName("dieNum")[0].innerHTML=10;
         document.getElementsByClassName("dieNum")[0].style.color="white";
         document.getElementsByClassName("tips")[0].innerHTML="<img src='images/1.svg'/>";
+	document.getElementsByClassName("pauseBtn")[0].style.display="block";//重新开始结束 显示暂停按钮
         this.play();
 	},
 	getLetter:function(num){
